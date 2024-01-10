@@ -1,12 +1,42 @@
 'use client';
-
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Dropdown, Navbar, Menu, Button } from 'react-daisyui';
+import {auth} from './firebase';
+
 
 
 const NavBar = () => {
-    const pathname = usePathname();
+    var [user, setUser] = useState(null);
+    useEffect(() =>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              const uid = user;
+              setUser(uid);
+              console.log("uid", uid)
+            } else {
+              // User is signed out
+              // ...
+              setUser(null);
+              console.log("user is logged out")
+            }
+          });
+        
+    }, [user])
+
+    const handleSignOut = async () => {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    
     return (  
     <Navbar className='bg-black'>
       <Navbar.Start>
@@ -22,7 +52,7 @@ const NavBar = () => {
               <a>Parent</a>
               <ul className="p-2">
                 <li>
-                  <a>Submenu 1</a>
+                  <Link href='/'>home</Link>
                 </li>
                 <li>
                   <a>Submenu 2</a>
@@ -57,9 +87,22 @@ const NavBar = () => {
           </Menu.Item>
         </Menu>
       </Navbar.Center>
-      <Navbar.End>
-        <Button tag="a">Button</Button>
-      </Navbar.End>
+      {!user ? 
+      <div>
+        <Navbar.End>
+          <Button tag="a" href='/auth/login'>login</Button>
+        </Navbar.End>
+        <Navbar.End>
+          <Button tag="a" href='/auth/sign-up'>Sign up</Button>
+        </Navbar.End>
+      </div>
+      :
+      (<div>
+        <Navbar.End>
+          <Button tag="a" onClick={() => handleSignOut()}>logout</Button>
+        </Navbar.End>
+      </div>)
+      }
     </Navbar>
 
     );
