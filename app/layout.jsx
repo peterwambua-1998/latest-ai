@@ -4,6 +4,7 @@ import './globals.css';
 import Link from 'next/link';
 import NavBar from './nav';
 import { AuthContextProvider } from "./context/AuthContext";
+import { usePathname } from 'next/navigation';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,10 +16,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
   return (
     <html lang="en">
       <body className={inter.className}>
-            <NavBar />
+        {
+          pathname != '/dashboard' ? <NavBar /> : ('')
+        }
+            
             {children}
       </body>
     </html>

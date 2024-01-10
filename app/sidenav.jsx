@@ -5,7 +5,7 @@ const SideNav = () => {
     return (  
         <main>
             <nav>
-        <Link href='/'>Home</Link>
+        <Link href='/' className=''>Home</Link>
       </nav>
         </main>
     );

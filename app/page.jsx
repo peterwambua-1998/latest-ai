@@ -7,6 +7,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import {auth} from './firebase';
 
 export default function Home() {
+  var [user, setUser] = useState(null);
+
+  
   // const [isMounted, setIsMounted] = useState(false);
   // const router = useRouter();
   // var {user} = UserAuth();
@@ -35,23 +38,7 @@ export default function Home() {
   //     </main>
   //   )
   // }
-    useEffect(() =>{
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-              // User is signed in, see docs for a list of available properties
-              // https://firebase.google.com/docs/reference/js/firebase.User
-              const uid = user.uid;
-              // ...
-              console.log("uid", uid)
-            } else {
-              // User is signed out
-              // ...
-              console.log("user is logged out")
-            }
-          });
-        
-    }, [])
-
+   
     return (
       <main className='bg-white text-black'>
        <p>peter</p>
