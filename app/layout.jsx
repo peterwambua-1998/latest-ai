@@ -2,7 +2,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
-import NavBar from './nav';
+import NavBar from './ui/nav';
 import { AuthContextProvider } from "./context/AuthContext";
 import { usePathname } from 'next/navigation';
 
