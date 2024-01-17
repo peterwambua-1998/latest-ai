@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -13,10 +15,32 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    
   }
+} */
+html {
+  background-color: #ffff !important;
+}
+body {
+  color: #1E1E1E;
+  background: #ffff;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: white;
+.my-nav {
+  border-bottom: 1px solid #1e1e1e22;
+}
+
+.home-container {
+  --background-rgb: 239, 242, 249;
+  background-color: rgb(var(--background-rgb));
+}
+
+.my-font {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.my-bg-blur {
+  background-image: url('images/bg5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }

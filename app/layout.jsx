@@ -1,9 +1,7 @@
 'use client';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Link from 'next/link';
 import NavBar from './ui/nav';
-import { AuthContextProvider } from "./context/AuthContext";
 import { usePathname } from 'next/navigation';
 
 
@@ -21,9 +19,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         {
-          pathname != '/dashboard' ? <NavBar /> : ('')
+          pathname.includes('/dashboard') ? (<div></div>)  : <NavBar />
         }
-            
             {children}
       </body>
     </html>
