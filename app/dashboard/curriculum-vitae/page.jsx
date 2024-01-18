@@ -36,10 +36,12 @@ const CurriculumVitae = () => {
     }
 
     console.log(abcd);
-    // for listening on user state
-    // useEffect(() => {
-    //     setUser(firebase_user.uid);
-    // },[firebase_user]);
+   
+    useEffect(() => {
+        if (loading == false) {
+            setUser(firebase_user.uid);
+        }
+    },[firebase_user, loading]);
 
     useEffect(() => {
         getCv();
