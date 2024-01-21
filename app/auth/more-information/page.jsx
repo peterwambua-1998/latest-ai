@@ -85,7 +85,7 @@ const MoreInformation = () => {
                     <div className="pl-[5%] pr-[5%] pt-2 w-full text-center">
                         <p className="font-bold text-[#1E3A8A] md:text-2xl lg:text-2xl">Lets Know more about you</p>
                         {
-                            (educationData.length > 0 && expData.length > 0 && skillData.length > 0) ? (<div><p>You can proceed to your dashboard</p><Button onClick={() => goToDashboard()}>Proceed</Button></div>) : ''
+                            (educationData.length > 0 && expData.length > 0 && skillData.length > 0) ? (<div><p>You can proceed to your dashboard</p><Button color="accent" onClick={() => goToDashboard()}>Proceed</Button></div>) : ''
                         }
                     </div>
 

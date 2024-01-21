@@ -6,8 +6,7 @@ import Image from 'next/image';
 import { auth } from '@/app/firebase';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 
 const SignUp = () => {
 
@@ -94,7 +93,7 @@ const SignUp = () => {
                                     {err != null ? <div className="text-center text-lg text-red-600">{err}</div> : ''}
                                     <div className='w-[100%] md:w-[70%] lg:w-[70%] mt-2'>
                                         <button onClick={() => mSighUpWithFacebook()} type="button" className="mt-5 py-3 px-4 w-full text-center gap-x-2 text-sm font-semibold rounded-full border border-[#0077B5] text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none ">
-                                        <FontAwesomeIcon icon={faCoffee} />Linked In
+                                            Linked In
                                         </button>
                                         <button type="button" className="mt-5 py-3 px-4 w-full text-center gap-x-2 text-sm font-semibold rounded-full border border-[#1DA1F2] text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none ">
                                             Twitter

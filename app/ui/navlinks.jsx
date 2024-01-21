@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from 'react';
-import { Navbar, Button } from "react-daisyui";
+import { Navbar, Button, Loading } from "react-daisyui";
 
 import {auth} from '../firebase';
 import { signOut } from 'firebase/auth';
@@ -27,7 +27,7 @@ function NavLinks () {
 
     if (loading) {
         console.log(loading);
-        return (<div>loading</div>)
+        return (<div><Loading  /></div>)
     }
 
     if (!loading) {
@@ -35,18 +35,21 @@ function NavLinks () {
         if (!user) {
             console.log('peter');
             return (
-                <div className='hidden lg:flex w-[20%]'>
-                    <Navbar.End>
+                <div className='hidden lg:flex w-[25%]'>
+                    <Navbar.End className='text-center'>
                         <Link href='/auth/login' className='text-[#1E3A8A] font-bold'>login</Link>
-                        </Navbar.End>
-                        <Navbar.End>
+                    </Navbar.End>
+                    <Navbar.End>
                         <Link  href='/auth/sign-up' className='w-[100%] bg-[#1E3A8A] text-white pl-5 pr-5 pt-3 pb-3 rounded-md'>Sign up</Link>
                     </Navbar.End>
                 </div>
             ) 
         } else {
             return (  
-                <div className='hidden lg:flex'>
+                <div className='hidden lg:flex gap-4 w-[25%]'>
+                    <Navbar.End className='text-center'>
+                        <Link href='/dashboard' >My Dashboard</Link>
+                    </Navbar.End>
                     <Navbar.End>
                         <Button  onClick={() => handleSignOut()}>logout</Button>
                     </Navbar.End>
