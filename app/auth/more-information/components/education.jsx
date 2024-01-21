@@ -242,7 +242,7 @@ const EducationWidget = ({user_id}) => {
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full">
                                         <label className="label ">
-                                            <span className="label-text text-black">Month</span>
+                                            <span className="label-text text-black">End date</span>
                                         </label>
                                         <Select className="bg-white text-black" defaultValue={'default'} onChange={(e) => setEndMonthEdu(e.target.value)} >
                                             <option value={'default'} disabled>
@@ -277,24 +277,23 @@ const EducationWidget = ({user_id}) => {
                             </div>
 
 
+                            
+
+
                             <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
-                                <div className="flex w-full items-center justify-start gap-2 mb-3">
+                            <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full ">
                                         <label className="label">
                                             <span className="label-text text-black">Grade</span>
                                         </label>
-                                        <Input className="bg-white text-black" placeholder="school" onChange={(e) => setGrade(e.target.value)} />
+                                        <Input className="bg-white text-black" placeholder="grade" onChange={(e) => setGrade(e.target.value)} />
                                         <div className="text-red-600 text-sm">{gradeError}</div>
                                     </div>
                                 </div>
-                            </div>
-
-
-                            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full ">
                                         <label className="label">
-                                            <span className="label-text text-black">Description</span>
+                                            <span className="label-text text-black">Description (optional)</span>
                                         </label>
                                         <Input className="bg-white text-black" placeholder="Description" onChange={(e) => setDescriptionEdu(e.target.value)} />
                                         <div className="text-red-600 text-sm">{descriptionEduError}</div>

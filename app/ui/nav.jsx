@@ -28,23 +28,13 @@ const NavBar = () => {
           <Navbar.End className="hidden lg:flex">
             <Menu horizontal className="px-1">
               <Menu.Item>
-                <a>Item 1</a>
+                <a>About</a>
               </Menu.Item>
               <Menu.Item>
-                <details>
-                  <summary>Parent</summary>
-                  <ul className="p-2">
-                    <Menu.Item>
-                      <a>Submenu 1</a>
-                    </Menu.Item>
-                    <Menu.Item>
-                      <a>Submenu 2</a>
-                    </Menu.Item>
-                  </ul>
-                </details>
+                <a>Contact</a>
               </Menu.Item>
               <Menu.Item>
-                <a>Item 3</a>
+                <a>FAQ</a>
               </Menu.Item>
             </Menu>
           </Navbar.End>

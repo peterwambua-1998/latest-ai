@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Dropdown, Navbar, Menu, Button } from 'react-daisyui';
+import { Dropdown, Navbar, Menu, Button, Loading } from 'react-daisyui';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {auth} from '../firebase';
 
@@ -26,7 +26,7 @@ function ResponsiveNavLinks () {
 
     if (isLoading) {
         console.log(loading);
-        return (<div>loading</div>)
+        return (<div><Loading  /></div>)
     }
 
     if (!isLoading) {

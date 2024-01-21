@@ -1,4 +1,5 @@
 'use client';
+import Link from "next/link";
 import { Menu, Card, Button } from "react-daisyui";
 
 const CurriculumVitae = () => {
@@ -13,10 +14,10 @@ const CurriculumVitae = () => {
                         <div className="p-2" >
                             <Menu>
                                 <Menu.Item>
-                                    <a>My Curriculam Vitae</a>
+                                    <a className="active">My Curriculam Vitae</a>
                                 </Menu.Item>
                                 <Menu.Item>
-                                    <a className="active">Craete cv</a>
+                                    <Link href='/dashboard/resume-create'>Create Resume</Link>
                                 </Menu.Item>
                                 {/* <Menu.Item>
                                     <a>Item 3</a>

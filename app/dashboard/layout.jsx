@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { Navbar, Menu, Button } from 'react-daisyui'
 import '@/app/globals.css';
 import Link from 'next/link';
+import { UserProvider } from '../context/UserContext';
+import NavLinks from '../ui/navlinks';
 
 export default function Layout({ children }) {
   var [user, setUser] = useState(null);
@@ -27,13 +29,11 @@ export default function Layout({ children }) {
           <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </Navbar.Start>
         <Navbar.Center className="hidden lg:flex">
-            {isLoading ? (<div>loading..</div>) : (
+            
             <Menu horizontal className="px-1">
-                
                   <Menu.Item>
                     <Link href={{
                       pathname: '/dashboard/curriculum-vitae',
-                      query: {userId: user.uid}
                     }}>Curriculum-vitae</Link>
                   </Menu.Item>
                   <Menu.Item>
@@ -44,12 +44,10 @@ export default function Layout({ children }) {
                   </Menu.Item>
             </Menu>
               
-            )}
             
         </Navbar.Center>
-        <Navbar.End>
-          <Button tag="a">Button</Button>
-        </Navbar.End>
+        
+        <NavLinks />
       </Navbar>
 
       <div className="bg-white my-font">{children}</div>

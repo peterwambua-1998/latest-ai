@@ -44,3 +44,10 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.resume-bg {
+  background-image: url('images/resume2.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+}
