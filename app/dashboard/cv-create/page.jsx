@@ -3,6 +3,10 @@ import { Input,Textarea, Accordion, Badge, Button } from "react-daisyui";
 import Hobbies from "./components/hobbies";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase";
+import AboutMe from "./components/about-me";
+import WebsiteLink from "./components/website";
+import References from "./components/references";
+import Address from "./components/address";
 
 const CreateCv = () => {
     const [firebase_user, loading, error] = useAuthState(auth);
@@ -18,16 +22,16 @@ const CreateCv = () => {
                     <div className="p-5">
                         <Hobbies userId={firebase_user.uid} />
                         <br />
-                        <Hobbies userId={firebase_user.uid} />
+                        <AboutMe userId={firebase_user.uid} />
                         <br />
 
-                        <Hobbies userId={firebase_user.uid} />
+                        <WebsiteLink userId={firebase_user.uid} />
                     </div>
                     <div className="p-5">
-                        <Hobbies userId={firebase_user.uid} />
+                        <References userId={firebase_user.uid} />
                         <br />
 
-                        <Hobbies userId={firebase_user.uid} />
+                        <Address userId={firebase_user.uid} />
                         <br />
 
                         <Hobbies userId={firebase_user.uid} />

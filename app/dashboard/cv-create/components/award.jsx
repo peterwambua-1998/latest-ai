@@ -4,19 +4,20 @@ import { Input,Textarea, Accordion, Badge, Button } from "react-daisyui";
 import { collection, query, where, getDoc, getDocs, onSnapshot, Timestamp,doc, addDoc } from "firebase/firestore"; 
 import { db } from "@/app/firebase";
 
-const Hobbies = ({userId}) => {
+const Award = ({userId}) => {
     console.log(userId);
-    const [hobbies, setHoobbies] = useState([]);
-    const [hobbbyValue, setHobbyValue] = useState(null);
+    const [awards, setAwards] = useState([]);
+    const [awardValue, setAwardValue] = useState(null);
+    const [descriptionValue, setDescriptionValue] = useState(null);
 
-    function getHobbies() {
+    function getAwards() {
         try {
-            let hobbiesRef = collection(db, 'hobbies');
-            let q = query(hobbiesRef, where('user_id', '==', userId));
+            let awardsRef = collection(db, 'award');
+            let q = query(awardsRef, where('user_id', '==', userId));
             onSnapshot(q, (docs) => {
-                setHoobbies([]);
+                setAwards([]);
                 docs.forEach(doc => {
-                    setHoobbies(prev => [...prev, doc.data()]);
+                    setAwards(prev => [...prev, doc.data()]);
                 });
             })
         } catch (error) {
@@ -25,15 +26,16 @@ const Hobbies = ({userId}) => {
     }
 
 
-    async function addHobby() {
+    async function addAward() {
         try {
             const data = {
                 user_id: userId,
-                title: hobbbyValue,
+                award: awardValue,
+                description: descriptionValue,
                 created_at: Timestamp.now()
             }
             
-            const collectionRef =  collection(db, 'hobbies');
+            const collectionRef =  collection(db, 'award');
             const res = await addDoc(collectionRef, data);
         } catch (error) {
             console.log(error);
@@ -41,29 +43,30 @@ const Hobbies = ({userId}) => {
     }
 
     useEffect(() => {
-        getHobbies();
+        getAwards();
     }, []);
 
     return (  
         <div>
             <Accordion defaultChecked className="bg-black text-white">
                 <Accordion.Title className="text-xl font-medium text-white">
-                    Hobbies
+                    Awards
                 </Accordion.Title>
                 <Accordion.Content>
                         <div className="flex gap-2 mb-2 items-center">
-                            {hobbies.map((hobby, index) => (
+                            {awards.map((award, index) => (
                                 <div key={index}>
-                                    <Badge className="p-4">{hobby.title}</Badge>
+                                    <Badge className="p-4">{award.award} {award.description}</Badge>
                                 </div>
                             ))}
                         </div>
                         
                         <div className="form-control w-full grow">
                             <label className="label">
-                                <span className="label-text">Add Hobby</span>
+                                <span className="label-text">Add Award</span>
                             </label>
-                            <div className="flex gap-4">
+                            <div className="">
+                                <Input className="bg-white text-black grow" placeholder="Ex: singing" onChange={(e) => setHobbyValue(e.target.value)} />
                                 <Input className="bg-white text-black grow" placeholder="Ex: singing" onChange={(e) => setHobbyValue(e.target.value)} />
                                 <Button onClick={() => {addHobby()}}>Save</Button>
                             </div>
