@@ -40,7 +40,7 @@ const Address = ({userId}) => {
 
     return (  
         <div>
-             <Accordion defaultChecked className="bg-black text-white">
+             <Accordion className="bg-black text-white">
                 <Accordion.Title className="text-xl font-medium text-white">
                     Address
                 </Accordion.Title>

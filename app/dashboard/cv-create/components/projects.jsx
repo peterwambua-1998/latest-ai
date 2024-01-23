@@ -4,20 +4,19 @@ import { Input,Textarea, Accordion, Badge, Button, Card } from "react-daisyui";
 import { collection, query, where, getDoc, getDocs, onSnapshot, Timestamp,doc, addDoc } from "firebase/firestore"; 
 import { db } from "@/app/firebase";
 
-const Award = ({userId}) => {
-    console.log(userId);
-    const [awards, setAwards] = useState([]);
-    const [awardValue, setAwardValue] = useState(null);
+const Projects = ({userId}) => {
+    const [projects, setProjects] = useState([]);
+    const [projectValue, setProjectValue] = useState(null);
     const [descriptionValue, setDescriptionValue] = useState(null);
 
-    function getAwards() {
+    function getProjects() {
         try {
-            let awardsRef = collection(db, 'award');
+            let awardsRef = collection(db, 'project');
             let q = query(awardsRef, where('user_id', '==', userId));
             onSnapshot(q, (docs) => {
-                setAwards([]);
+                setProjects([]);
                 docs.forEach(doc => {
-                    setAwards(prev => [...prev, doc.data()]);
+                    setProjects(prev => [...prev, doc.data()]);
                 });
             })
         } catch (error) {
@@ -26,16 +25,16 @@ const Award = ({userId}) => {
     }
 
 
-    async function addAward() {
+    async function addProject() {
         try {
             const data = {
                 user_id: userId,
-                award: awardValue,
+                title: projectValue,
                 description: descriptionValue,
                 created_at: Timestamp.now()
             }
             
-            const collectionRef =  collection(db, 'award');
+            const collectionRef =  collection(db, 'project');
             const res = await addDoc(collectionRef, data);
         } catch (error) {
             console.log(error);
@@ -43,23 +42,23 @@ const Award = ({userId}) => {
     }
 
     useEffect(() => {
-        getAwards();
+        getProjects();
     }, []);
 
     return (  
         <div>
             <Accordion className="bg-black text-white">
                 <Accordion.Title className="text-xl font-medium text-white">
-                    Awards
+                    Projects
                 </Accordion.Title>
                 <Accordion.Content>
                         <div className="md:grid md:grid-cols-2 gap-2 mb-2 items-center">
-                            {awards.map((award, index) => (
+                            {projects.map((project, index) => (
                                 <div key={index}>
                                     <Card>
                                         <Card.Body>
-                                            <Card.Title tag="h2">{award.award}</Card.Title>
-                                            <p>{award.description}</p>
+                                            <Card.Title tag="h2">{project.title}</Card.Title>
+                                            <p>{project.description}</p>
                                         </Card.Body>
                                     </Card>
                                 </div>
@@ -69,12 +68,12 @@ const Award = ({userId}) => {
                         
                         <div className="form-control w-full grow">
                             <label className="label">
-                                <span className="label-text">Add Award</span>
+                                <span className="label-text">Add Project</span>
                             </label>
                             <div className="flex gap-4">
-                                <Input className="bg-white text-black grow" placeholder="Title" onChange={(e) => setAwardValue(e.target.value)} />
+                                <Input className="bg-white text-black grow" placeholder="Title" onChange={(e) => setProjectValue(e.target.value)} />
                                 <Input className="bg-white text-black grow" placeholder="Description" onChange={(e) => setDescriptionValue(e.target.value)} />
-                                <Button onClick={() => {addAward()}}>Save</Button>
+                                <Button onClick={() => {addProject()}}>Save</Button>
                             </div>
                         </div>
                         
@@ -84,4 +83,4 @@ const Award = ({userId}) => {
     );
 }
  
-export default Award;
+export default Projects;

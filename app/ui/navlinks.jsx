@@ -26,12 +26,10 @@ function NavLinks () {
     }, [loading, firebase_user])
 
     if (loading) {
-        console.log(loading);
         return (<div><Loading  /></div>)
     }
 
     if (!loading) {
-        console.log(isLoading);
         if (!user) {
             console.log('peter');
             return (

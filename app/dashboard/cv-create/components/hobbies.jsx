@@ -46,7 +46,7 @@ const Hobbies = ({userId}) => {
 
     return (  
         <div>
-            <Accordion defaultChecked className="bg-black text-white">
+            <Accordion defaultChecked className="bg-yellow-500 text-white">
                 <Accordion.Title className="text-xl font-medium text-white">
                     Hobbies
                 </Accordion.Title>
