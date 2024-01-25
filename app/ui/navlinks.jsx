@@ -35,10 +35,10 @@ function NavLinks () {
             return (
                 <div className='hidden lg:flex w-[25%]'>
                     <Navbar.End className='text-center'>
-                        <Link href='/auth/login' className='text-[#1E3A8A] font-bold'>login</Link>
+                        <Link href='/auth/login' className='text-amber-500 font-bold'>login</Link>
                     </Navbar.End>
                     <Navbar.End>
-                        <Link  href='/auth/sign-up' className='w-[100%] bg-[#1E3A8A] text-white pl-5 pr-5 pt-3 pb-3 rounded-md'>Sign up</Link>
+                        <Link  href='/auth/sign-up' className='w-[100%] bg-amber-500 text-black font-bold pl-5 pr-5 pt-3 pb-3 rounded-md'>Sign up</Link>
                     </Navbar.End>
                 </div>
             ) 

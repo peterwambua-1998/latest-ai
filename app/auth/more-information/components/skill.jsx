@@ -55,7 +55,7 @@ const SkillWidget = ({user_id}) => {
                 <div className="p-2 md:p-5 lg:p-5 bg-amber-200 w-full rounded-md">
                     <div className="flex justify-between">
                         <p className="text-sm md:text-lg font-bold">Skills</p>
-                        <p className="text-sm md:text-lg font-bold" onClick={toggleVisibleSkill}>+</p>
+                        <Button onClick={toggleVisibleSkill} className="text-lg rounded-full">+</Button>
                     </div>
                     <div className="mt-3 text-xs md:text-base lg:text-base">
                         <p>Add skills to level up your resume</p>

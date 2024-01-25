@@ -69,7 +69,7 @@ const MoreInformation = () => {
 
     if (isLoading) {
         //console.log(loading);
-        return (<div className="h-[100vh] w-[90vw] text-black bg-white text-center ">loading</div>)
+        return (<div className='h-[100vh] w-full align-middle text-blue-500 bg-blue-950 text-center'><Loading className='' /></div>)
     }
    
     

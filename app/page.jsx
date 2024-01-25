@@ -28,7 +28,7 @@ export default function Home() {
               <div>
                 <h2 className='text-xl font-bold md:text-5xl mb-3'>Build a simple job-ready resume employers cannot ignore in minutes</h2>
                 <p className='t-[5%] text-sm md:text-xl lg:text-xl'>Easily create an outstanding resume for different job roles and industries with less intervention to level up your career goal and get hired by top firm.</p>
-                <button type="button" className="mt-5 py-3 px-4 inline-flex items-center gap-x-2 text-xs md:text-sm lg:text-sm font-semibold rounded-lg border border-transparent bg-amber-500 text-white hover:bg-amber-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <button type="button" className="mt-5 py-3 px-4 inline-flex items-center gap-x-2 text-xs md:text-sm lg:text-sm font-semibold rounded-lg border border-transparent bg-amber-500 text-black hover:bg-amber-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                   Get Started
                 </button>
               </div>

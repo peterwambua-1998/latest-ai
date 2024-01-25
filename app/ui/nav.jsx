@@ -7,7 +7,7 @@ import ResponsiveNavLinks from './responsive-navlinks';
 const NavBar = () => {
     return (
     
-        <Navbar className='bg-white'>
+        <Navbar className='my-font bg-blue-950 text-white'>
           <Navbar.Start>
           <Dropdown className='text-white'>
             <Button tag="label" color="ghost" tabIndex={0} className="lg:hidden text-black">
