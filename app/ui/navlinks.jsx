@@ -49,7 +49,7 @@ function NavLinks () {
                         <Link href='/dashboard' >My Dashboard</Link>
                     </Navbar.End>
                     <Navbar.End>
-                        <Button  onClick={() => handleSignOut()}>logout</Button>
+                        <Button className='bg-blue-300 text-black'  onClick={() => handleSignOut()}>logout</Button>
                     </Navbar.End>
                 </div>
             );

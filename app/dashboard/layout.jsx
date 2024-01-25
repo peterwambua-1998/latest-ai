@@ -24,7 +24,7 @@ export default function Layout({ children }) {
 
   return (
     <div>
-      <Navbar className='my-font'>
+      <Navbar className='my-font bg-blue-950 text-white'>
         <Navbar.Start>
           <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </Navbar.Start>
