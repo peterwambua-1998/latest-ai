@@ -1,42 +1,24 @@
 'use client'
 import { auth, db } from "@/app/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Divider, Loading, Button, Badge } from "react-daisyui";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import profileImg from '@/app/images/profile.jpeg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faCoffee } from "@fortawesome/free-solid-svg-icons";
+import AboutMe from "./components/about-me";
 
 const CvPageDesign = () => {
-
     const [firebase_user, loading, error] = useAuthState(auth);
-    const [ab, setAb] = useState(null);
 
     // cv data
-
-
-    async function getAbout() {
-        try {
-            const usb = onSnapshot(doc(db, 'about', firebase_user.uid), doc => {
-                setAb(doc.data());
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect(() => {
-        console.log(firebase_user);
-        if (firebase_user != null) {
-            getAbout();
-        }
-    }, [loading]);
-
-    
-
-
+    // useEffect(() => {
+    //     if (firebase_user != null) {
+    //         getAbout();
+    //     }
+    // }, []);
     //     return (  
     //         <div>
     //             {console.log('user=='+firebase_user)}
@@ -44,9 +26,8 @@ const CvPageDesign = () => {
     //         </div>
     //     );
     if (!firebase_user) {
-        return (<p>l</p>)
+        return (<p>l</p>);
     } else {
-        
         return (
             <div className="md:grid md:grid-cols-4 bg-slate-200">
                 <div className="md:col-span-3 p-5">
@@ -69,7 +50,7 @@ const CvPageDesign = () => {
                         {/* about me */}
                         <div>
                             <p className="mb-2 font-bold">About</p>
-                            <p className="text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed ipsa optio sunt saepe. At numquam, magni officia dolore libero modi harum amet accusantium molestias laborum, repellat incidunt dolorem sint voluptatibus!</p>
+                            <AboutMe useId={firebase_user.uid} />
                         </div>
                         <Divider></Divider>
                         {/* experience */}

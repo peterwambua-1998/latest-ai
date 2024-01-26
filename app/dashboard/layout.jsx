@@ -19,8 +19,11 @@ export default function Layout({ children }) {
   useEffect(() => {
     setUser(firebase_user);
     setIsLoading(loading)
-  }, [loading, firebase_user])
+  }, [])
 
+  if (!loading && !firebase_user) {
+    router.replace('/');
+  }
 
   return (
     <div>
