@@ -1,5 +1,5 @@
 'use client'
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from '../../firebase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
@@ -8,9 +8,8 @@ import loginImg from '@/app/images/login.svg'
 import Image from 'next/image';
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import Router from "next/router";
-import { useUser } from "@/app/context/UserContext";
+import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { Loading } from "react-daisyui";
 
 
 const Login = () => {
@@ -21,6 +20,7 @@ const Login = () => {
     const [err, setErr] = useState(null);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [signUpGoogleClicked, setSignUpGoogleClicked] = useState(false);
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -33,6 +33,18 @@ const Login = () => {
         } catch (er) {
             console.log(er);
             setErr('invalid credentials please try again');
+        }
+    }
+
+    const handleSignInGoogle = async () => {
+        try {
+            setSignUpGoogleClicked(true);
+            let googleProv = new GoogleAuthProvider();
+            await signInWithPopup(auth, googleProv); 
+            router.replace('/dashboard');
+        } catch (error) {
+            console.log(error);
+            setErr('Error occurred please try again');
         }
     }
 
@@ -78,19 +90,18 @@ const Login = () => {
                                         Login
                                     </button>
                                     <div className='w-[70%] mt-2'>
+                                        <p className='text-xs text-center text-red-500'>{err}</p>
                                         <p className='text-xs text-center'>or sign in with</p>
                                     </div>
                                     
                                 </form>
-                                {err != null ? <div className="text-center text-lg text-red-600">{err}</div> : ''}
                                 <div className='w-[70%] mt-2'>
-                                    <button type="button" className="flex justify-center mt-5 py-3 px-4 w-full gap-x-2 text-sm font-semibold rounded-full text-[#0077B5] border border-[#0077B5] text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none ">
-                                        <FontAwesomeIcon className="h-[18px]" icon={faLinkedin} />        
-                                        Linked In
+                                    <button onClick={() => handleSignInGoogle()} type="button" className="mt-5 py-3 px-4 w-full flex justify-center gap-x-2 text-sm font-semibold rounded-full border border-[#EA4335] text-black hover:border-[#EA4335] hover:text-[#EA4335] disabled:opacity-50 disabled:pointer-events-none ">
+                                                {signUpGoogleClicked ? (<Loading className="w-[20px]" />) : (<span></span>)} <span><FontAwesomeIcon icon={faGoogle} className="font-sm" /> Google</span> 
                                     </button>
-                                    <button type="button" className="mt-5 py-3 px-4 w-full text-center gap-x-2 text-sm font-semibold rounded-full border text-[#1DA1F2] border-[#1DA1F2] text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none ">
-                                    <FontAwesomeIcon className="h-[18px]" icon={faTwitter} />  
-                                        Twitter
+                                    <button type="button" className="mt-5 py-3 px-4 w-full text-center gap-x-2 text-sm font-semibold rounded-full border text-[#1DA1F2] border-[#1DA1F2]  hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none ">
+                                        <FontAwesomeIcon className="h-[18px]" icon={faFacebook} />  
+                                            Twitter
                                     </button>
                                 </div>
                             </div>

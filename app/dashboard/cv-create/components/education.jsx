@@ -11,10 +11,8 @@ const EducationWidget = ({user_id}) => {
     var [school, setSchool] = useState(null);
     var [degree, setDegree] = useState(null);
     var [fieldStudy, setFieldStudy] = useState(null);
-    var [startMonthEdu, setStartMonthEdu] = useState(null);
-    var [startYearEdu, setStartYearEdu] = useState(null);
-    var [endMonthEdu, setEndMonthEdu] = useState(null);
-    var [endYearEdu, setEndYearEdu] = useState(null);
+    var [starDate, setStartDate] = useState(null);
+    var [endDate, setEndDate] = useState(null);
     var [grade, setGrade] = useState(null);
     var [descriptionEdu, setDescriptionEdu] = useState(null);
    
@@ -22,10 +20,8 @@ const EducationWidget = ({user_id}) => {
     var [schoolError, setSchoolError] = useState(null);
     var [degreeError, setDegreeError] = useState(null);
     var [fieldStudyError, setFieldStudyError] = useState(null);
-    var [startMonthEduError, setStartMonthEduError] = useState(null);
-    var [startYearEduError, setStartYearEduError] = useState(null);
-    var [endDateEduError, setEndDateEduError] = useState(null);
-    var [endYearEduError, setEndYearEduError] = useState(null);
+    var [startDateError, setStartDateError] = useState(null);
+    var [endDateError, setEndDateError] = useState(null);
     var [gradeError, setGradeError] = useState(null);
     var [descriptionEduError, setDescriptionEduError] = useState(null);
 
@@ -69,32 +65,19 @@ const EducationWidget = ({user_id}) => {
             setFieldStudyError(null);
         }
 
-        if (startMonthEdu == null || !startMonthEdu) {
-            setStartMonthEduError('field required');
+      
+        if (starDate == null || !starDate) {
+            setStartDateError('field required');
             return;
         } else {
-            setStartMonthEduError(null);
+            setStartDateError(null);
         }
 
-        if (startYearEdu == null || !startYearEdu) {
-            setStartYearEduError('field required');
+        if (endDate == null || !endDate) {
+            setEndDateError('field required');
             return;
         } else {
-            setStartYearEduError(null);
-        }
-
-        if (endMonthEdu == null || !endMonthEdu) {
-            setEndDateEduError('field required');
-            return;
-        } else {
-            setEndDateEduError(null);
-        }
-
-        if (endYearEdu == null || !endYearEdu) {
-            setEndYearEduError('field required');
-            return;
-        } else {
-            setEndYearEduError(null);
+            setEndDateError(null);
         }
 
         if (grade == null || !grade) {
@@ -103,7 +86,6 @@ const EducationWidget = ({user_id}) => {
         } else {
             setGradeError(null);
         }
-
 
         if (descriptionEdu == null || !descriptionEdu) {
             setDescriptionEduError('field required');
@@ -118,13 +100,12 @@ const EducationWidget = ({user_id}) => {
                 school: school,
                 degree: degree,
                 fieldStudy: fieldStudy,
-                startMonthEdu: startMonthEdu,
-                startYearEdu: startYearEdu,
-                endMonthEdu: endMonthEdu,
-                endYearEdu: endYearEdu,
+                startDate: starDate,
+                endDate: endDate,
                 grade: grade,
                 descriptionEdu: descriptionEdu,
-                user_id: user_id
+                user_id: user_id,
+                created_at: Timestamp.now()
             });
         } catch (error) {
             console.log('system error please try again');
@@ -203,80 +184,38 @@ const EducationWidget = ({user_id}) => {
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full">
                                         <label className="label ">
                                             <span className="label-text text-black">Start date</span>
                                         </label>
-                                        <Select className="bg-white text-black" defaultValue={'default'} onChange={(e) => setStartMonthEdu(e.target.value)} >
-                                            <option value={'default'} disabled>
-                                                Month
-                                            </option>
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                        </Select>
-                                        <div className="text-red-600 text-sm">{startMonthEduError}</div>
+                                        <Input type="date" className="bg-white text-black" onChange={(e) => setStartDate(e.target.value)} />
+                                        <div className="text-red-600 text-sm">{startDateError}</div>
                                     </div>
                                 </div>
 
-                                <div className="flex w-full items-center justify-start gap-2 mb-3">
-                                    <div className="form-control w-full ">
-                                        <label className="label">
-                                            <span className="label-text text-black">Year</span>
-                                        </label>
-                                        <Input type="month" className="bg-white text-black" placeholder="school" onChange={(e) => setStartYearEdu(e.target.value)} />
-                                        <div className="text-red-600 text-sm">{startYearEduError}</div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
+                                
+
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
-                                    <div className="form-control w-full">
-                                        <label className="label ">
+                                    <div className="form-control w-full ">
+                                        <label className="label">
                                             <span className="label-text text-black">End date</span>
                                         </label>
-                                        <Select className="bg-white text-black" defaultValue={'default'} onChange={(e) => setEndMonthEdu(e.target.value)} >
-                                            <option value={'default'} disabled>
-                                                Month
-                                            </option>
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                        </Select>
-                                        <div className="text-red-600 text-sm">{endDateEduError}</div>
+                                        <Input type="date" className="bg-white text-black" onChange={(e) => setEndDate(e.target.value)} />
+                                        <div className="text-red-600 text-sm">{endDateError}</div>
                                     </div>
                                 </div>
 
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full ">
                                         <label className="label">
-                                            <span className="label-text text-black">Year</span>
+                                            <span className="label-text text-black">Grade</span>
                                         </label>
-                                        <Input type="month" className="bg-white text-black"  onChange={(e) => setEndYearEdu(e.target.value)} />
-                                        <div className="text-red-600 text-sm">{endYearEduError}</div>
+                                        <Input className="bg-white text-black" placeholder="grade" onChange={(e) => setGrade(e.target.value)} />
+                                        <div className="text-red-600 text-sm">{gradeError}</div>
                                     </div>
                                 </div>
                             </div>
@@ -286,16 +225,8 @@ const EducationWidget = ({user_id}) => {
 
 
                             <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
-                            <div className="flex w-full items-center justify-start gap-2 mb-3">
-                                    <div className="form-control w-full ">
-                                        <label className="label">
-                                            <span className="label-text text-black">Grade</span>
-                                        </label>
-                                        <Input className="bg-white text-black" placeholder="grade" onChange={(e) => setGrade(e.target.value)} />
-                                        <div className="text-red-600 text-sm">{gradeError}</div>
-                                    </div>
-                                </div>
-                                <div className="flex w-full items-center justify-start gap-2 mb-3">
+                                
+                                <div className="flex w-full items-center justify-start gap-2 mb-3 col-span-2">
                                     <div className="form-control w-full ">
                                         <label className="label">
                                             <span className="label-text text-black">Description (optional)</span>

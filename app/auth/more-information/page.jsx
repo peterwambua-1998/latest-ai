@@ -97,12 +97,6 @@ const MoreInformation = () => {
             setLocationError(null);
         }
         
-        if (martialStatus == 'Pick one' || !martialStatus) {
-            setMartialStatusError('field required');
-            return;
-        } else {
-            setMartialStatusError(null);
-        }
 
         try {
             const data = {
@@ -111,9 +105,9 @@ const MoreInformation = () => {
                 location: location,
                 DOB: dob,
                 martial_status: martialStatus,
+                created_at: Timestamp.now()
             }
             await setDoc(doc(db, "profile", user.uid), data);
-            
         } catch (error) {
             console.log(error);
         }
@@ -122,8 +116,6 @@ const MoreInformation = () => {
     function goToDashboard() {
         router.push('/dashboard');
     }
-
-    console.log('poeter');
 
     useEffect(() => {
         setUser(firebase_user);
@@ -135,7 +127,6 @@ const MoreInformation = () => {
         }
     }, [firebase_user, loading])
    
-
     if (isLoading) {
         //console.log(loading);
         return (<div className='h-[100vh] w-full align-middle text-blue-500 bg-blue-950 text-center'><Loading className='' /></div>)
@@ -148,7 +139,7 @@ const MoreInformation = () => {
         } else {
            
             return (  
-                <main>
+                <main className="bg-image">
                     {/* <div className="pl-[5%] pr-[5%] pt-2 w-full text-center">
                         <p className="font-bold text-[#1E3A8A] md:text-2xl lg:text-2xl">Lets Know more about you</p>
                         {
@@ -179,7 +170,7 @@ const MoreInformation = () => {
                                 <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
                                     <div className="form-control w-full ">
                                         <label className="label">
-                                            <span className="label-text">Full name</span>
+                                            <span className="label-text text-black">Full name</span>
                                         </label>
                                         <Input className="bg-white" placeholder="Ex: John Doe" onChange={(e) => setFullName(e.target.value)} />
                                         <div className="text-red-600 text-sm">{fullNameError}</div>
@@ -191,7 +182,7 @@ const MoreInformation = () => {
                                 <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
                                     <div className="form-control w-full ">
                                         <label className="label">
-                                            <span className="label-text">Email</span>
+                                            <span className="label-text text-black">Email</span>
                                         </label>
                                         <Input className="bg-white" placeholder="Ex: someone@mail.com" onChange={(e) => setEmail(e.target.value)} />
                                         <div className="text-red-600 text-sm">{emailError}</div>
@@ -204,7 +195,7 @@ const MoreInformation = () => {
                                 <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
                                     <div className="form-control w-full">
                                         <label className="label">
-                                            <span className="label-text">DOB</span>
+                                            <span className="label-text text-black">DOB</span>
                                         </label>
                                         <Input type="date" className="bg-white" onChange={(e) => setDob(e.target.value)} />
                                         <div className="text-red-600 text-sm">{dobError}</div>
@@ -216,7 +207,7 @@ const MoreInformation = () => {
                                 <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
                                     <div className="form-control w-full">
                                         <label className="label">
-                                            <span className="label-text">Location</span>
+                                            <span className="label-text text-black">Location</span>
                                         </label>
                                         <Input className="bg-white" placeholder="Ex: Nairobi, Kenya" onChange={(e) => setLocation(e.target.value)} />
                                         <div className="text-red-600 text-sm">{locationError}</div>
@@ -228,7 +219,7 @@ const MoreInformation = () => {
                                 <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
                                     <div className="form-control w-full">
                                         <label className="label">
-                                            <span className="label-text">Martial status</span>
+                                            <span className="label-text text-black">Martial status (Optional)</span>
                                         </label>
                                         <Select className="bg-white" onChange={(e) => setMartialStatus(e.target.value)}>
                                             <option value={'Pick one'}>
@@ -239,7 +230,6 @@ const MoreInformation = () => {
                                             <option value={'Married'}>Married</option>
                                             <option value={'Divorced'}>Divorced</option>
                                         </Select>
-                                        <div className="text-red-600 text-sm">{martialStatusError}</div>
                                     </div>
                                 </div>
                             </div>

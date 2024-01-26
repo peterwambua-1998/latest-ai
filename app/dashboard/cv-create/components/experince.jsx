@@ -9,14 +9,14 @@ const ExperienceWidget = ({user_id}) => {
     var [companyName, setCompanyName] = useState(null);
     var [currentEmployment, setCurrentEmployment] = useState(null);
     var [employmentType, setEmploymentType] = useState(null);
-    var [startMonthExp, setStartMonthExp] = useState(null);
-    var [startYearExp, setStartYearExp] = useState(null);
-    var [endMonthExp, setEndMonthExp] = useState(null);
-    var [endYearExp, setEndYearExp] = useState(null);
+    var [startDate, setStartDate] = useState(null);
+    var [endDate, setEndDate] = useState(null);
     var [uTitle, setUTitle] = useState(null);
     var [uDescription, setUDescription] = useState(null);
     var [location, setLocation] = useState(null);
     var [locationType, setLocationType] = useState(null);
+
+    const [err, setErr] = useState(null);
 
     const toggleVisibleEdu = () => {
         setVisible(!visible);
@@ -26,10 +26,8 @@ const ExperienceWidget = ({user_id}) => {
     var [companyNameError, setCompanyNameError] = useState(null);
     var [currentEmploymentError, setCurrentEmploymentError] = useState(null);
     var [employmentTypeError, setEmploymentTypeError] = useState(null);
-    var [startMonthExpError, setStartMonthExpError] = useState(null);
-    var [startYearExpError, setStartYearExpError] = useState(null);
-    var [endDateExpError, setEndDateExpError] = useState(null);
-    var [endYearExpError, setEndYearExpError] = useState(null);
+    var [startDateError, setStartDateError] = useState(null);
+    var [endDateError, setEndDateError] = useState(null);
     var [uTitleError, setUTitleError] = useState(null);
     var [uDescriptionError, setUDescriptionError] = useState(null);
     var [locationError, setLocationError] = useState(null);
@@ -87,31 +85,18 @@ const ExperienceWidget = ({user_id}) => {
             setLocationTypeError(null);
         }
 
-        if (!startMonthExp || startMonthExp == null) {
-            setStartMonthExpError('field required');
+        if (!startDate || startDate == null) {
+            setStartDateError('field required');
             return;
         } else {
-            setStartMonthExpError(null);
-        }
-        if (!startYearExp || startYearExp == null) {
-            setStartYearExpError('field required');
-            return;
-        } else {
-            setStartYearExpError(null);
+            setStartDateError(null);
         }
 
-        if (!endMonthExp || endMonthExp == null) {
-            setEndDateExpError('field required');
+        if (!endDate || endDate == null) {
+            setEndDateError('field required');
             return;
         } else {
-            setEndDateExpError(null);
-        }
-
-        if (!endYearExp || endYearExp == null) {
-            setEndYearExpError('field required');
-            return;
-        } else {
-            setEndYearExpError(null);
+            setEndDateError(null);
         }
 
         if (!uDescription || uDescription == null) {
@@ -130,15 +115,15 @@ const ExperienceWidget = ({user_id}) => {
                 companyName: companyName,
                 location: location,
                 locationType: locationType,
-                startMonth: startMonthExp,
-                startYear: startYearExp,
-                endMonth: endMonthExp,
-                endYear: endYearExp,
+                startDate: startDate,
+                endDate: endDate,
                 description: uDescription,
-                user_id: user_id
+                user_id: user_id,
+                created_at: Timestamp.now()
             });
         } catch (error) {
             setErr('system error please try again');
+            console.log(error);
         }
     }
 
@@ -253,84 +238,35 @@ const ExperienceWidget = ({user_id}) => {
                                     </Select>
                                     <div className="text-red-600 text-sm">{locationTypeError}</div>
                                 </div>
-                            </div>
 
-                            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full">
                                         <label className="label ">
                                             <span className="label-text text-black">Start date</span>
                                         </label>
-                                        <Select className="bg-white text-black" defaultValue={'default'} onChange={(e) => setStartMonthExp(e.target.value)} >
-                                            <option value={'default'} disabled>
-                                                Month
-                                            </option>
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                        </Select>
-                                        <div className="text-red-600 text-sm">{startMonthExpError}</div>
-                                    </div>
-                                </div>
-
-                                <div className="flex w-full items-center justify-start gap-2 mb-3">
-                                    <div className="form-control w-full ">
-                                        <label className="label">
-                                            <span className="label-text text-black">Year</span>
-                                        </label>
-                                        <Input type="month" className="bg-white text-black" placeholder="school" onChange={(e) => setStartYearExp(e.target.value)} />
-                                        <div className="text-red-600 text-sm">{startYearExpError}</div>
+                                        <Input type="date" className="bg-white text-black" placeholder="school" onChange={(e) => setStartDate(e.target.value)} />
+                                        <div className="text-red-600 text-sm">{startDateError}</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-0 md:gap-5 lg:gap-8">
-                                <div className="flex w-full items-center justify-start gap-2 mb-3">
-                                    <div className="form-control w-full">
-                                        <label className="label ">
-                                            <span className="label-text text-black">End Date</span>
-                                        </label>
-                                        <Select className="bg-white text-black" defaultValue={'default'} onChange={(e) => setEndMonthExp(e.target.value)} >
-                                            <option value={'default'} disabled>
-                                                Month
-                                            </option>
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                        </Select>
-                                        <div className="text-red-600 text-sm">{endDateExpError}</div>
-                                    </div>
-                                </div>
+                                
 
                                 <div className="flex w-full items-center justify-start gap-2 mb-3">
                                     <div className="form-control w-full ">
                                         <label className="label">
-                                            <span className="label-text text-black">Year</span>
+                                            <span className="label-text text-black">End date</span>
                                         </label>
-                                        <Input type="month" className="bg-white text-black"  onChange={(e) => setEndYearExp(e.target.value)} />
-                                        <div className="text-red-600 text-sm">{endYearExpError}</div>
+                                        <Input type="date" className="bg-white text-black" placeholder="school" onChange={(e) => setEndDate(e.target.value)} />
+                                        <div className="text-red-600 text-sm">{endDateError}</div>
                                     </div>
                                 </div>
+
+
                             </div>
 
+                            
                             <div className="w-full items-center justify-end gap-2">
                                 <div className="form-control">
                                     <label className="label">

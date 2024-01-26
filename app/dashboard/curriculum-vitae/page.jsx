@@ -41,7 +41,6 @@ const CurriculumVitae = () => {
        } 
     }
 
-    console.log(abcd);
     // for listening on user state
     // useEffect(() => {
     //     setUser(firebase_user.uid);
@@ -56,14 +55,13 @@ const CurriculumVitae = () => {
                 router.push('/');
             }
         }
-    },[firebase_user, loading]);
+    },[]);
 
-   
-    
    
    
     return (  
-        <div>
+        <main className="g-image">
+        <div >
             <div className="p-8 h-[40vh] my-bg-blur">
                 <h1 className="text-2xl font-bold">Curriculum Vitae</h1>
             </div>
@@ -84,7 +82,7 @@ const CurriculumVitae = () => {
                             </Menu>
                         </div>
                         <div className="md:col-span-3">
-                            {loading ? <Loading /> : 
+                            {loading ? <div className="text-center"><Loading /></div>  : 
                                 abcd.length > 0 ? (
                                     abcd.map((val, index) =>
                                         (
@@ -103,17 +101,16 @@ const CurriculumVitae = () => {
                                         )
                                     )
 
-                                ) : (<div></div>)
+                                ) : (<div className="text-center">no data available</div>)
                             }
-                                
-
-                                
                                 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </main>
+        
     );
 
 }

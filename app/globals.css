@@ -55,3 +55,18 @@ body {
 .collapse[open].collapse-arrow>.collapse-title:after, .collapse-open.collapse-arrow>.collapse-title:after, .collapse-arrow:focus:not(.collapse-close)>.collapse-title:after, .collapse-arrow:not(.collapse-close)>input[type=checkbox]:checked~.collapse-title:after, .collapse-arrow:not(.collapse-close)>input[type=radio]:checked~.collapse-title:after {
   color: white;
 }
+
+.bg-image {
+  background-image: url('images/one.png');
+  background-repeat: no-repeat;
+  background-position-y: top;
+  background-position-x: right;
+}
+
+.g-image {
+  background-image: url('images/one.png');
+  background-repeat: no-repeat;
+  background-position-y: top;
+  background-position-x: right;
+  z-index: 1000;
+}
