@@ -148,7 +148,7 @@ const ExperienceWidget = ({user_id}) => {
 
     
     return (  
-        <main>
+        <main className="mb-5 p-2">
             <Accordion className="bg-black text-white">
                 <Accordion.Title className="text-xl font-medium text-white">
                     Expireince

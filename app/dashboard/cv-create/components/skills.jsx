@@ -50,7 +50,7 @@ const SkillWidget = ({user_id}) => {
 
     return (  
         
-        <div>
+        <div className="mb-5 p-2">
             <Accordion className="bg-black text-white">
                 <Accordion.Title className="text-xl font-medium text-white">
                     Skills
